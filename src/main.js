@@ -152,14 +152,17 @@ class Main extends React.Component {
     }
   }
 
+  handleOnChange(event) {
+    this.setState({userInput: event.target.value});
+  }
+  
   handleKeyPress(event) {
     const { messages, userInput } = this.state;
 
     if (event.key === 'Enter') {
-      const searchValue = userInput;
       messages.push(
         { id: messages.length,
-          text: searchValue,
+          text: userInput,
           owner: 'user'
         }
       );
@@ -169,14 +172,9 @@ class Main extends React.Component {
         // clear out input field
         userInput: ''
       });
-      console.log('searchQuery [FROM SEARCH]: ' + searchValue);
-      this.fetchData(searchValue);
-    } else {
-      this.setState({
-        // add letter to our string
-        userInput: userInput.concat(event.key)
-      });        
-    }
+      console.log('searchQuery [FROM SEARCH]: ' + userInput);
+      this.fetchData(userInput);
+    } 
   }
 
   getListItems() {
@@ -193,6 +191,7 @@ class Main extends React.Component {
    * render - return all the home page object to be rendered.
    */
   render() {
+    const { userInput } = this.state;
 
     return (
       <Grid celled className='search-grid'>
@@ -209,9 +208,11 @@ class Main extends React.Component {
               </Card.Content>
               <Input
                 icon='compose'
-                value={this.state.userInput}
+                iconPosition='left'
+                value={userInput}
                 placeholder='Enter response......'
                 onKeyPress={this.handleKeyPress.bind(this)}
+                onChange={this.handleOnChange.bind(this)}
               />
             </Card>
 
