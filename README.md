@@ -9,9 +9,9 @@
 * Improve UI
 * Come up with good questions that show better results
 
-> Assumes completion of discovery setup described in https://github.com/rhagarty/watson-discovery-sdu-ui.
-
 # Steps:
+
+> Assumes completion of discovery setup described in https://github.com/rhagarty/watson-discovery-sdu-ui.
 
 1. Configure credentials to disco collection with SDU
 1. Run UI locally
